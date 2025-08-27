@@ -7,7 +7,7 @@
     <title>Mohammed Irshad S.D. Ansari - Portfolio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
-<link rel="icon" type="image/png" href="logo.png">
+    <link rel="icon" type="image/png" href="logo.png">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
     <style>
         :root {
@@ -993,7 +993,7 @@
         function downloadPDF() {
             // IMPORTANT: You must host your PDF file online and replace this placeholder.
             // A local file path like "C:\Users\..." will NOT work for security reasons.
-            const pdfPath = 'Mohammed Irshad - CV - AUG2025.pdf';
+            const pdfPath = 'Miadro/Mohammed Irshad - CV - AUG2025.pdf';
 
             if (pdfPath === 'REPLACE_WITH_YOUR_HOSTED_PDF_URL') {
                 alert('The download link has not been configured yet.');
@@ -1002,7 +1002,7 @@
 
             const link = document.createElement('a');
             link.href = pdfPath;
-            link.download = 'Mohammed_Irshad_Ansari_CV.pdf'; // Suggested file name
+            link.download = 'Mohammed_Irshad_Ansari_Resume.pdf'; // Suggested file name
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
@@ -1113,6 +1113,27 @@
             const passcodeInput = document.getElementById('passcode-input');
             const headerElement = document.querySelector('.glass-header');
             const actionButtons = document.getElementById('action-buttons');
+
+            // --- Disable Dev Tools ---
+            // Disable right-click
+            document.addEventListener('contextmenu', event => event.preventDefault());
+
+            // Disable keyboard shortcuts for developer tools
+            document.onkeydown = function(e) {
+                if (e.keyCode == 123) { // F12
+                    return false;
+                }
+                if (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0)) { // Ctrl+Shift+I
+                    return false;
+                }
+                if (e.ctrlKey && e.shiftKey && e.keyCode == 'J'.charCodeAt(0)) { // Ctrl+Shift+J
+                    return false;
+                }
+                if (e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) { // Ctrl+U
+                    return false;
+                }
+            };
+            // --- End Disable Dev Tools ---
 
 
             // --- Logic to show/hide buttons on header hover for DESKTOP ONLY---
@@ -1238,6 +1259,3 @@
 </body>
 
 </html>
-
-
-
