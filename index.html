@@ -194,7 +194,6 @@
         .action-buttons button:hover {
             background-color: #4f46e5;
             box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-            transform: translateY(-2px);
         }
 
         .action-buttons button span {
@@ -278,7 +277,6 @@
         .mobile-menu-button:hover {
             background-color: #4f46e5;
             box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
-            transform: translateY(-2px);
         }
 
         .sidebar-indicator {
@@ -968,19 +966,26 @@
                     actionButtons.classList.add('visible');
                 } else {
                     // On desktop, add the hover listeners now that the page is unlocked.
-                    if (headerElement && mobileToggle && actionButtons) {
-                        headerElement.addEventListener('mouseenter', () => {
-                            mobileToggle.classList.add('visible');
-                            actionButtons.classList.add('visible');
-                        });
-
-                        headerElement.addEventListener('mouseleave', () => {
-                            // Don't hide the buttons if the sidebar is currently open
+                    let hideTimeout;
+                    const showButtons = () => {
+                        clearTimeout(hideTimeout);
+                        mobileToggle.classList.add('visible');
+                        actionButtons.classList.add('visible');
+                    };
+                    const hideButtons = () => {
+                        hideTimeout = setTimeout(() => {
                             if (!sidebar.classList.contains('open')) {
                                 mobileToggle.classList.remove('visible');
                                 actionButtons.classList.remove('visible');
                             }
-                        });
+                        }, 100); // A small delay
+                    };
+
+                    if (headerElement && mobileToggle && actionButtons) {
+                        headerElement.addEventListener('mouseenter', showButtons);
+                        headerElement.addEventListener('mouseleave', hideButtons);
+                        actionButtons.addEventListener('mouseenter', showButtons);
+                        actionButtons.addEventListener('mouseleave', hideButtons);
                     }
                 }
 
