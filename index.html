@@ -954,6 +954,8 @@
             const pageContentWrapper = document.getElementById('page-content-wrapper');
             const mobileToggle = document.getElementById('mobile-menu-toggle');
             const actionButtons = document.getElementById('action-buttons');
+            const headerElement = document.querySelector('.glass-header');
+            const sidebar = document.getElementById('sidebar');
 
             overlay.style.opacity = '0';
             setTimeout(() => {
@@ -964,6 +966,22 @@
                 if (window.innerWidth < 768) {
                     mobileToggle.classList.add('visible');
                     actionButtons.classList.add('visible');
+                } else {
+                    // On desktop, add the hover listeners now that the page is unlocked.
+                    if (headerElement && mobileToggle && actionButtons) {
+                        headerElement.addEventListener('mouseenter', () => {
+                            mobileToggle.classList.add('visible');
+                            actionButtons.classList.add('visible');
+                        });
+
+                        headerElement.addEventListener('mouseleave', () => {
+                            // Don't hide the buttons if the sidebar is currently open
+                            if (!sidebar.classList.contains('open')) {
+                                mobileToggle.classList.remove('visible');
+                                actionButtons.classList.remove('visible');
+                            }
+                        });
+                    }
                 }
 
                 // Start the 10-minute session timer
@@ -1002,7 +1020,7 @@
 
             const link = document.createElement('a');
             link.href = pdfPath;
-            link.download = 'Mohammed_Irshad_Ansari_CV.pdf'; // Suggested file name
+            link.download = 'Mohammed_Irshad_Ansari_Resume.pdf'; // Suggested file name
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
@@ -1134,25 +1152,6 @@
                 }
             };
             // --- End Disable Dev Tools ---
-            
-            // --- Logic to show/hide buttons on header hover for DESKTOP ONLY---
-            if (window.innerWidth >= 768) {
-                if (headerElement && mobileToggle && actionButtons) {
-                    headerElement.addEventListener('mouseenter', () => {
-                        mobileToggle.classList.add('visible');
-                        actionButtons.classList.add('visible');
-                    });
-
-                    headerElement.addEventListener('mouseleave', () => {
-                        // Don't hide the buttons if the sidebar is currently open
-                        if (!sidebar.classList.contains('open')) {
-                            mobileToggle.classList.remove('visible');
-                            actionButtons.classList.remove('visible');
-                        }
-                    });
-                }
-            }
-            // --- END LOGIC ---
 
             // Add event listener for the Enter key on the passcode input
             if (passcodeInput) {
