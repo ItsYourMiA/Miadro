@@ -1,0 +1,1240 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mohammed Irshad S.D. Ansari - Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+<link rel="icon" type="image/png" href="C:\Irshad\PERSONAL FOLDER\Newportfolio\logomia-removebg-preview.png">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
+    <style>
+        :root {
+            --bg-color: #e0e7ff;
+            /* Softer light background */
+            --text-color: #1f2937;
+            --header-bg: rgba(255, 255, 255, 0.8);
+            --header-link-color: #4b5563;
+            --card-bg: rgba(255, 255, 255, 0.6);
+            --title-color: #111827;
+            --border-color: rgba(0, 0, 0, 0.1);
+            --accent-color: #6366f1;
+            --blurry-text-color: rgba(0, 0, 0, 0.05);
+            --main-bg-image: url('https://storage.googleapis.com/canvas-files/3447989.jpg');
+            --main-bg-overlay: linear-gradient(rgba(224, 231, 255, 0.7), rgba(224, 231, 255, 0.7));
+            /* Adjusted overlay */
+            --text-color-header: #1f2937;
+            --text-color-light: #4b5563;
+        }
+
+        body.dark-mode {
+            --bg-color: #111827;
+            --text-color: #d1d5db;
+            --header-bg: rgba(31, 41, 55, 0.6);
+            --header-link-color: #d1d5db;
+            --card-bg: rgba(31, 41, 55, 0.4);
+            --title-color: #f3f4f6;
+            --border-color: rgba(255, 255, 255, 0.1);
+            --accent-color: #6366f1;
+            --blurry-text-color: rgba(255, 255, 255, 0.05);
+            --main-bg-overlay: linear-gradient(rgba(17, 24, 39, 0.7), rgba(17, 24, 39, 0.7));
+            --text-color-header: #d1d5db;
+            --text-color-light: #d1d5db;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            color: var(--text-color);
+            background: var(--main-bg-overlay), var(--main-bg-image);
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+            padding-left: 0;
+            margin-left: 0;
+        }
+
+        .page-content-wrapper {
+            transition: margin-left 0.3s ease-in-out;
+            min-height: calc(100vh - 4rem);
+            /* Ensure content pushes footer down */
+            filter: blur(8px);
+            pointer-events: none;
+        }
+        
+        .page-content-wrapper.unlocked #main-content {
+            margin-top: var(--header-height, 0px);
+        }
+
+        .page-content-wrapper.unlocked {
+            filter: none;
+            pointer-events: auto;
+        }
+
+        /* Ensure header is always on top and visible */
+        header.glass-header,
+        .action-buttons {
+            z-index: 100;
+        }
+
+        .section-title {
+            position: relative;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--title-color);
+            transition: color 0.3s ease-in-out;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 50px;
+            height: 4px;
+            background-color: var(--accent-color);
+            border-radius: 9999px;
+            transition: background-color 0.3s ease-in-out;
+        }
+
+        /* Semi-transparent background for content sections with a stronger blur */
+        .glass-card {
+            background-color: var(--card-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid var(--border-color);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+            border-radius: 1.5rem;
+            transition: background-color 0.3s ease-in-out, border-color 0.3s ease-in-out;
+        }
+
+        /* Adjusting the header for the new theme */
+        .glass-header {
+            background: none;
+            position: sticky;
+            top: 0;
+            width: 100%;
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* New styling for the contained header content */
+        .header-content-container {
+            background-color: var(--header-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1.5rem;
+            /* Add padding here instead of the header tag */
+            border-radius: 1.5rem;
+            /* Increased border radius */
+            transition: all 0.3s ease-in-out;
+        }
+
+        /* Link and icon colors for the new theme */
+        .header-link {
+            color: var(--header-link-color);
+            transition: color 0.3s ease-in-out;
+        }
+
+        /* Blurry text styling */
+        .blurry-text {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            left: 0;
+            right: 0;
+            font-size: 12vw;
+            /* Responsive font size */
+            font-weight: 900;
+            letter-spacing: 3vw;
+            /* Stretches the text */
+            color: var(--blurry-text-color);
+            text-shadow: 0 0 20px var(--accent-color);
+            text-align: center;
+            user-select: none;
+            /* Prevents text selection */
+            pointer-events: none;
+            /* Allows clicks to pass through */
+            z-index: 10;
+            transition: color 0.3s ease-in-out, text-shadow 0.3s ease-in-out;
+        }
+
+        /* New print and share button styles */
+        .action-buttons {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            display: flex;
+            flex-direction: column;
+            /* Stack buttons vertically on desktop */
+            gap: 0.5rem;
+        }
+
+        .action-buttons button {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 0.75rem;
+            /* Reduced padding for icon-only buttons */
+            border-radius: 9999px;
+            font-weight: 600;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.2s ease-in-out;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            /* Center the icon */
+            width: 3rem;
+            /* Fixed width and height for a circular button */
+            height: 3rem;
+        }
+
+        .action-buttons button:hover {
+            background-color: #4f46e5;
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .action-buttons button span {
+            display: none;
+            /* Hide button text */
+        }
+
+        /* Highlight for current work profile */
+        .current-work-highlight {
+            background-color: var(--current-work-highlight) !important;
+            box-shadow: 0 0 15px rgba(99, 102, 241, 0.5);
+            border: none !important;
+            transition: background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        }
+
+        /* Sidebar styles */
+        .sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100%;
+            width: 250px;
+            background-color: var(--header-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-right: 1px solid var(--border-color);
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-in-out;
+            z-index: 101; /* Ensure sidebar is on top of the header */
+            padding-top: 1.5rem;
+        }
+
+        .sidebar.open {
+            transform: translateX(0);
+        }
+
+        .sidebar-content {
+            padding: 1rem;
+            color: var(--text-color);
+            width: 100%;
+        }
+
+        .sidebar-link {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.5rem 0;
+            transition: color 0.2s ease-in-out;
+            color: var(--text-color-light);
+            /* Set color from CSS variable */
+        }
+
+        .sidebar-link:hover {
+            color: var(--accent-color);
+            /* Hover color from CSS variable */
+        }
+
+        /* Mobile Menu Button */
+        .mobile-menu-button {
+            position: fixed;
+            top: 1rem;
+            left: 1rem;
+            z-index: 100;
+            background-color: var(--accent-color);
+            color: white;
+            padding: 0.75rem;
+            border-radius: 9999px;
+            width: 3rem;
+            height: 3rem;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.2s ease-in-out;
+        }
+        
+        .mobile-menu-button.sidebar-is-open {
+            z-index: 102; /* Ensure menu button is on top of the open sidebar */
+        }
+
+        .mobile-menu-button:hover {
+            background-color: #4f46e5;
+            box-shadow: 0 6px 8px rgba(0, 0, 0, 0.15);
+            transform: translateY(-2px);
+        }
+
+        .sidebar-indicator {
+            position: fixed;
+            left: 0;
+            top: 50%;
+            transform: translateY(-50%) rotate(-90deg);
+            /* Rotate for vertical text */
+            transform-origin: left top;
+            z-index: 54;
+            color: white;
+            font-weight: 600;
+            cursor: pointer;
+            user-select: none;
+            transition: all 0.3s ease-in-out;
+            background-color: var(--accent-color);
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            display: none;
+        }
+
+        .sidebar-indicator:hover {
+            background-color: #4f46e5;
+            transform: translateY(-50%) rotate(-90deg) translateX(15px);
+            /* Slide on hover */
+        }
+
+        /* Passcode overlay styles */
+        .passcode-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: rgba(17, 24, 39, 0.8);
+            z-index: 99;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        .passcode-box {
+            background-color: rgba(255, 255, 255, 0.9);
+            padding: 2rem;
+            border-radius: 1rem;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            color: #111827;
+            width: 90%;
+            max-width: 400px;
+        }
+
+        .passcode-input {
+            width: 100%;
+            padding: 0.5rem;
+            border-radius: 0.5rem;
+            border: 1px solid #d1d5db;
+            margin-top: 1rem;
+            margin-bottom: 1rem;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .passcode-button {
+            background-color: #6366f1;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: 9999px;
+            font-weight: 600;
+            transition: all 0.2s ease-in-out;
+            cursor: pointer;
+        }
+
+        .passcode-button:hover {
+            background-color: #4f46e5;
+        }
+
+        /* Styles to hide/show buttons on header hover */
+        #mobile-menu-toggle,
+        #action-buttons {
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        #mobile-menu-toggle.visible,
+        #action-buttons.visible {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* Mobile specific styles for collapsible header */
+        @media (max-width: 768px) {
+            .glass-header.scrolled {
+                height: 6rem !important; /* Force a fixed, reduced height */
+                padding: 0 !important;
+            }
+            .glass-header.scrolled .header-content-container {
+                flex-direction: row !important;
+                align-items: center !important;
+                text-align: left !important;
+                padding: 0.5rem 1.5rem !important;
+            }
+            .glass-header.scrolled .header-content-container .rounded-full {
+                display: none !important;
+            }
+            .glass-header.scrolled h1 {
+                font-size: 1.5rem !important;
+                margin: 0 !important;
+            }
+            .glass-header.scrolled p {
+                font-size: 1rem !important;
+                margin-top: 0 !important;
+            }
+            .glass-header.scrolled .contact-info-block {
+                display: none !important;
+            }
+            /* Add this to prevent the parent flex container from disappearing */
+            .glass-header.scrolled .header-content-container > div:first-child {
+                display: flex !important;
+            }
+
+            .mobile-menu-button {
+                display: flex;
+            }
+
+            .sidebar {
+                transform: translateX(-100%);
+            }
+
+            body.sidebar-open .sidebar {
+                transform: translateX(0);
+            }
+
+            .action-buttons {
+                flex-direction: row;
+                /* Horizontal on mobile */
+            }
+
+            /* Adjust pop-up position for mobile */
+            .passcode-overlay {
+                align-items: flex-end; /* Align to the bottom of the flex container */
+                padding-top: 0;
+                padding-bottom: 2rem; /* Add some space from the bottom */
+            }
+        }
+
+        @media (min-width: 768px) {
+            .sidebar-indicator {
+                display: flex;
+            }
+
+            .sidebar {
+                transform: translateX(-100%);
+            }
+
+            .action-buttons {
+                flex-direction: column;
+                /* Vertical on desktop */
+            }
+
+            body.sidebar-open #page-wrapper {
+                margin-left: 250px;
+            }
+
+            body:not(.sidebar-open) #page-wrapper {
+                margin-left: 0;
+            }
+        }
+
+        /* Print-specific styles */
+        @media print {
+            body {
+                background: none;
+                background-color: white;
+                color: black;
+            }
+
+            .glass-header,
+            .glass-card {
+                background: none;
+                backdrop-filter: none;
+                -webkit-backdrop-filter: none;
+                border: none;
+                box-shadow: none;
+            }
+
+            .glass-header {
+                position: static;
+                text-align: left;
+            }
+
+            .header-content-container {
+                padding: 0;
+            }
+
+            .header-content-container .flex-col,
+            .header-content-container .flex-row {
+                flex-direction: row !important;
+            }
+
+            .header-content-container .text-center {
+                text-align: left !important;
+            }
+
+            .header-content-container .md\:text-left {
+                text-align: left !important;
+            }
+
+            .header-content-container h1,
+            .header-content-container p,
+            .header-content-container a,
+            .header-content-container span {
+                color: black !important;
+                margin: 0;
+            }
+
+            .blurry-text,
+            .action-buttons,
+            .glass-card .flex i,
+            .sidebar,
+            .mobile-menu-button,
+            .sidebar-indicator,
+            .passcode-overlay,
+            #mode-select-overlay {
+                display: none;
+            }
+
+            /* Specific print styles for the contact info links */
+            .contact-info-block {
+                display: flex !important;
+                flex-wrap: wrap;
+                justify-content: flex-start;
+                gap: 1rem;
+                align-items: center;
+            }
+
+            .contact-info-block a,
+            .contact-info-block span {
+                display: flex !important;
+                align-items: center;
+                gap: 0.5rem;
+                color: black !important;
+                text-decoration: none;
+            }
+
+            .contact-info-block i {
+                color: #6366f1 !important;
+                /* Use a color for the icons */
+            }
+
+            .print-hide-address {
+                display: none !important;
+            }
+
+            /* Show the contact text for printing */
+            .contact-info-block a span {
+                display: inline !important;
+            }
+        }
+
+        .animated-sidebar-bg {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><defs><pattern id="pattern" width="20" height="20" patternUnits="userSpaceOnUse"><rect width="5" height="5" fill="%234f46e5" opacity="0.1"/><path d="M 0 0 L 20 0 L 20 20 L 0 20 Z" fill="none" stroke="%234f46e5" stroke-width="0.5" opacity="0.2"/></pattern></defs><rect width="100" height="100" fill="url(%23pattern)"/></svg>');
+            background-size: 200px 200px;
+            animation: move-bg 10s linear infinite;
+        }
+
+        @keyframes move-bg {
+            from {
+                background-position: 0 0;
+            }
+            to {
+                background-position: 200px 200px;
+            }
+        }
+
+        body.dark-mode .animated-sidebar-bg {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><defs><pattern id="pattern" width="20" height="20" patternUnits="userSpaceOnUse"><rect width="5" height="5" fill="%23d1d5db" opacity="0.1"/><path d="M 0 0 L 20 0 L 20 20 L 0 20 Z" fill="none" stroke="%23d1d5db" stroke-width="0.5" opacity="0.2"/></pattern></defs><rect width="100" height="100" fill="url(%23pattern)"/></svg>');
+        }
+
+        .mi-adro-text {
+            position: absolute;
+            bottom: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: 0.2rem;
+            color: var(--accent-color);
+            animation: neon-glow 1.5s ease-in-out infinite alternate;
+        }
+
+        @keyframes neon-glow {
+            from {
+                text-shadow: 0 0 5px var(--accent-color), 0 0 10px var(--accent-color), 0 0 15px var(--accent-color);
+            }
+            to {
+                text-shadow: 0 0 10px var(--accent-color), 0 0 20px var(--accent-color), 0 0 30px var(--accent-color), 0 0 40px var(--accent-color);
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <header class="glass-header">
+        <div class="container mx-auto px-4 max-w-7xl relative">
+            <div class="header-content-container flex flex-col md:flex-row items-center justify-between text-center md:text-left relative z-20 py-6">
+                <div class="flex flex-col md:flex-row items-center">
+                    <div class="rounded-full overflow-hidden w-36 h-36 mb-6 md:mb-0 md:mr-8 shadow-lg border-2 border-indigo-400">
+                        <img src="C:\Users\mohammedirshad.s\Downloads\Image_20250130_145521 (1) (1).png" alt="Profile Picture" class="w-full h-full object-cover">
+                    </div>
+                    <div>
+                        <h1 class="text-4xl font-bold mb-2" style="color: var(--text-color-header);">Mohammed Irshad S.D. Ansari</h1>
+                        <p class="text-xl" style="color: var(--text-color-light);">Team Leader/Sr. Executive - Business Operation's</p>
+                    </div>
+                </div>
+
+                <div class="flex flex-col items-end space-y-2 contact-info-block md:items-end md:text-right" style="color: var(--text-color-light);">
+                    <a href="mailto:mohammedirshad.ansari@hotmail.com" class="header-link hover:text-white transition-colors duration-200" aria-label="Email">
+                        <i class="fas fa-envelope text-lg"></i>
+                        <span class="print-hide">mohammedirshad.ansari@hotmail.com</span>
+                    </a>
+                    <a href="tel:+917058515970" class="header-link hover:text-white transition-colors duration-200" aria-label="Phone">
+                        <i class="fas fa-phone-alt text-lg"></i>
+                        <span class="print-hide">+91 7058515970</span>
+                    </a>
+                    <a href="https://linkedin.com/in/a-mohammed-irshad" target="_blank" class="header-link hover:text-white transition-colors duration-200" aria-label="LinkedIn">
+                        <i class="fab fa-linkedin text-lg"></i>
+                        <span class="print-hide">linkedin.com/in/a-mohammed-irshad</span>
+                    </a>
+                    <span class="text-base print-hide">
+                        <i class="fas fa-map-marker-alt text-lg"></i>
+                        <span>Ambernath, Mumbai - India</span>
+                    </span>
+                </div>
+            </div>
+            <div class="blurry-text">MIA</div>
+    </header>
+
+    <aside id="sidebar" class="sidebar">
+        <div class="sidebar-content animated-sidebar-bg">
+            <h3 class="text-2xl font-bold mb-4" style="color: var(--title-color);">Products</h3>
+            <ul class="space-y-2">
+                <li><a href="#" class="sidebar-link"><i class="fas fa-plane"></i> <span class="sidebar-link-text">Flight Bookings</span></a></li>
+                <li><a href="#" class="sidebar-link"><i class="fas fa-hotel"></i> <span class="sidebar-link-text">Hotel Reservations</span></a></li>
+                <li><a href="#" class="sidebar-link"><i class="fas fa-train"></i> <span class="sidebar-link-text">Train Tickets</span></a></li>
+                <li><a href="#" class="sidebar-link"><i class="fas fa-bus"></i> <span class="sidebar-link-text">Bus Bookings</span></a></li>
+                <li><a href="#" class="sidebar-link"><i class="fas fa-car"></i> <span class="sidebar-link-text">Car Rentals</span></a></li>
+            </ul>
+        </div>
+        <div class="mi-adro-text">Mi'adro</div>
+    </aside>
+
+    <button id="mobile-menu-toggle" class="mobile-menu-button" title="Open Menu">
+        <i class="fas fa-bars text-xl"></i>
+    </button>
+
+    <div id="sidebar-indicator" class="sidebar-indicator">
+        <p>Products</p>
+    </div>
+
+    <div id="action-buttons" class="action-buttons">
+        <button id="mode-toggle" style="display: none;">
+            <i id="mode-icon" class="fas fa-moon"></i>
+        </button>
+        <button onclick="downloadPDF()">
+            <i class="fas fa-download"></i>
+        </button>
+        <button onclick="window.print()">
+            <i class="fas fa-print"></i>
+        </button>
+        <button onclick="sharePage()">
+            <i class="fas fa-share-alt"></i>
+        </button>
+    </div>
+
+    <div id="passcode-overlay" class="passcode-overlay">
+        <div class="passcode-box">
+            <h2 class="text-2xl font-bold mb-2">Portfolio Locked</h2>
+            <p class="mb-4">Please enter the passcode to view the full portfolio.</p>
+            <input type="password" id="passcode-input" class="passcode-input" placeholder="Enter Passcode">
+            <button onclick="unlockPortfolio()" class="passcode-button">Unlock</button>
+            <p id="error-message" class="text-red-500 mt-2 hidden">Incorrect passcode. Please try again.</p>
+        </div>
+    </div>
+    
+    <div id="mode-select-overlay" class="passcode-overlay hidden">
+        <div class="passcode-box">
+            <h2 class="text-2xl font-bold mb-4">Choose Your Theme</h2>
+            <div class="flex justify-center space-x-4">
+                <button id="day-mode-button" class="passcode-button">
+                    <i class="fas fa-sun mr-2"></i> Day Mode
+                </button>
+                <button id="night-mode-button" class="passcode-button">
+                    <i class="fas fa-moon mr-2"></i> Night Mode
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <div id="page-content-wrapper" class="page-content-wrapper">
+        <main id="main-content" class="container mx-auto px-4 py-12 max-w-7xl grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="flex flex-col space-y-8">
+                <section id="about" class="glass-card p-8 rounded-xl shadow-lg">
+                    <div class="flex items-center justify-between cursor-pointer" onclick="toggleSection('about-content')">
+                        <h2 class="text-3xl font-bold section-title mb-0">About</h2>
+                        <i id="about-icon" class="fas fa-chevron-down text-2xl text-gray-400 transform transition-transform duration-300"></i>
+                    </div>
+                    <div id="about-content" class="mt-4 transition-all duration-300 ease-in-out overflow-hidden">
+                        <div class="space-y-4" style="color: var(--text-color-light);">
+                            <p>A dynamic and results-driven Travel and Tech Business Operations Professional with a robust background in product development, technical support, and customer service. I leverage strategic leadership and relationship-building skills to drive innovation and transformation within the travel industry.</p>
+                            <p>My expertise lies in optimizing business operations, driving growth through technology integration, and enhancing product channels (B2B, B2C and Corporate) to deliver exceptional travel services. I'm adept at leading teams and managing operations in fast-paced environments, with a proven track record of redefining operational KPIs and collaborating with technology teams to ensure product enhancements meet market demands.</p>
+                            <h3 class="text-xl font-semibold mb-2 mt-6" style="color: var(--title-color);">B2B Products Experience</h3>
+                            <ul class="list-disc list-inside space-y-1">
+                                <li>Airline, Hotel, Train, Bus, Car</li>
+                                <li>Insurance, Cruise, Multi-Utility, Rail Tourism</li>
+                                <li>Money Transfer, Lounge services</li>
+                            </ul>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="skills" class="glass-card p-8 rounded-xl shadow-lg">
+                    <div class="flex items-center justify-between cursor-pointer" onclick="toggleSection('skills-content')">
+                        <h2 class="text-3xl font-bold section-title mb-0">Skills & Tools</h2>
+                        <i id="skills-icon" class="fas fa-chevron-down text-2xl text-gray-400 transform transition-transform duration-300 rotate-180"></i>
+                    </div>
+                    <div id="skills-content" class="mt-4 transition-all duration-300 ease-in-out overflow-hidden" style="max-height: 0px; opacity: 0;">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8" style="color: var(--text-color-light);">
+                            <div>
+                                <h3 class="text-xl font-semibold mb-2" style="color: var(--title-color);">Core Skills</h3>
+                                <ul class="list-disc list-inside space-y-1">
+                                    <li>Team leadership and development</li>
+                                    <li>Product development and implementation</li>
+                                    <li>API and white-label platform management</li>
+                                    <li>Report generation and business intelligence</li>
+                                    <li>Multitasking and problem-solving under pressure</li>
+                                    <li>REST API Testing (Rest Assured, Postman)</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold mb-2" style="color: var(--title-color);">Advanced Tools & Expertise</h3>
+                                <ul class="list-disc list-inside space-y-1">
+                                    <li>Microsoft Excel (Pivot Tables, Power Query, Power Pivot)</li>
+                                    <li>MS Power BI Desktop (Data Visualization, Data Modelling)</li>
+                                    <li>Google Workspace Tools</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="education" class="glass-card p-8 rounded-xl shadow-lg">
+                    <div class="flex items-center justify-between cursor-pointer" onclick="toggleSection('education-content')">
+                        <h2 class="text-3xl font-bold section-title mb-0">Education & Certifications</h2>
+                        <i id="education-icon" class="fas fa-chevron-down text-2xl text-gray-400 transform transition-transform duration-300 rotate-180"></i>
+                    </div>
+                    <div id="education-content" class="mt-4 transition-all duration-300 ease-in-out overflow-hidden" style="max-height: 0px; opacity: 0;">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8" style="color: var(--text-color-light);">
+                            <div>
+                                <h3 class="text-xl font-semibold mb-2" style="color: var(--title-color);">Education</h3>
+                                <ul class="list-disc list-inside space-y-1">
+                                    <li>B.COM - 2016, Mumbai University</li>
+                                    <li>HSC - 2013, Maharashtra Board</li>
+                                    <li>SSC - 2011, Maharashtra Board</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold mb-2" style="color: var(--title-color);">Certifications</h3>
+                                <ul class="list-disc list-inside space-y-1">
+                                    <li>Airfares & Ticketing with Amadeus CRS - 2017</li>
+                                    <li>Data Visualization with MS Power BI Desktop - 2022</li>
+                                    <li>Business Analytics with Excel - 2022</li>
+                                    <li>Google Cloud - Introduction to Generative AI, LLM & Responsible AI - 2025</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section id="languages" class="glass-card p-8 rounded-xl shadow-lg">
+                    <div class="flex items-center justify-between cursor-pointer" onclick="toggleSection('languages-content')">
+                        <h2 class="text-3xl font-bold section-title mb-0">Languages & OS</h2>
+                        <i id="languages-icon" class="fas fa-chevron-down text-2xl text-gray-400 transform transition-transform duration-300 rotate-180"></i>
+                    </div>
+                    <div id="languages-content" class="mt-4 transition-all duration-300 ease-in-out overflow-hidden" style="max-height: 0px; opacity: 0;">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-8" style="color: var(--text-color-light);">
+                            <div>
+                                <h3 class="text-xl font-semibold mb-2" style="color: var(--title-color);">Languages</h3>
+                                <ul class="list-disc list-inside space-y-1">
+                                    <li>English</li>
+                                    <li>Hindi</li>
+                                    <li>Marathi</li>
+                                </ul>
+                            </div>
+                            <div>
+                                <h3 class="text-xl font-semibold mb-2" style="color: var(--title-color);">OS Expertise</h3>
+                                <ul class="list-disc list-inside space-y-1">
+                                    <li>Windows</li>
+                                    <li>MacBook</li>
+                                    <li>Linux (Ubuntu)</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <div class="flex flex-col space-y-8">
+                <section id="work-experience" class="glass-card p-8 rounded-xl shadow-lg">
+                    <div class="flex items-center justify-between cursor-pointer" onclick="toggleSection('work-experience-content')">
+                        <h2 class="text-3xl font-bold section-title mb-0">Work Experience <span class="text-indigo-600 text-base font-normal">9 Years</span></h2>
+                        <i id="work-experience-icon" class="fas fa-chevron-down text-2xl text-gray-400 transform transition-transform duration-300"></i>
+                    </div>
+                    <div id="work-experience-content" class="mt-4 transition-all duration-300 ease-in-out overflow-hidden">
+                        <div class="space-y-8">
+                            <div class="border-l-4 border-indigo-400 pl-4 py-2 relative">
+                                <div class="absolute -left-2 top-0 mt-3 h-4 w-4 rounded-full bg-indigo-400"></div>
+                                <div class="flex items-center justify-between cursor-pointer" onclick="toggleJobDetail('cleartrip-content')">
+                                    <h3 class="text-xl font-semibold" style="color: var(--title-color);">Senior Executive - CLEARTRIP PVT LTD (FLIPKART COMPANY)</h3>
+                                    <i id="cleartrip-content-icon" class="fas fa-chevron-down text-lg text-gray-400 transform transition-transform duration-300"></i>
+                                </div>
+                                <p class="text-sm italic mb-2" style="color: var(--text-color-light);">Vikhroli, Mumbai | 05/2024 - Present</p>
+                                <div id="cleartrip-content" class="job-content mt-2 transition-all duration-300 ease-in-out overflow-hidden">
+                                    <ul class="list-disc list-inside mt-2 space-y-1" style="color: var(--text-color-light);">
+                                        <li>Led the successful implementation of new travel products and tech, boosting booking efficiency by 15%.</li>
+                                        <li>Streamlined product setup, cutting implementation time by 20% and improving operational efficiency.</li>
+                                        <li>Configured and maintained GDS and online booking platforms, ensuring reliable system performance.</li>
+                                        <li>Provided technical expertise to clients, resolving complex integration issues and ensuring seamless connectivity.</li>
+                                        <li>Collaborated with developers to customize systems, meeting specific client requirements.</li>
+                                        <li>Delivered technical support and training to travel agents and clients on system usage and best practices.</li>
+                                        <li>Assisted in the evaluation and selection of new travel technologies and vendors.</li>
+                                        <li>Contributed to the development of system documentation and training materials.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="border-l-4 border-indigo-400 pl-4 py-2 relative">
+                                <div class="absolute -left-2 top-0 mt-3 h-4 w-4 rounded-full bg-indigo-400"></div>
+                                <div class="flex items-center justify-between cursor-pointer" onclick="toggleJobDetail('team-leader-content')">
+                                    <h3 class="text-xl font-semibold" style="color: var(--title-color);">Team Leader - RIYA TOURS & TRAVEL (i) PVT LTD</h3>
+                                    <i id="team-leader-content-icon" class="fas fa-chevron-down text-lg text-gray-400 transform transition-transform duration-300 rotate-180"></i>
+                                </div>
+                                <p class="text-sm italic mb-2" style="color: var(--text-color-light);">Vikhroli, Mumbai | 11/2022 - 05/2024</p>
+                                <div id="team-leader-content" class="job-content mt-2 transition-all duration-300 ease-in-out overflow-hidden" style="max-height: 0px; opacity: 0;">
+                                    <ul class="list-disc list-inside mt-2 space-y-1" style="color: var(--text-color-light);">
+                                        <li>Led and managed a team of 15+ members, providing guidance, support, and fostering collaboration.</li>
+                                        <li>Managed technical operations and ensured timely updates.</li>
+                                        <li>Developed customized reports and presentations.</li>
+                                        <li>Contributed to goal setting and process development.</li>
+                                        <li>Addressed feedback and resolved complaints.</li>
+                                        <li>Coordinated team schedules and leave approvals.</li>
+                                        <li>Provided feedback and proposed solutions, suggested improvements to prevent issues.</li>
+                                        <li>Managed API and white-label client relationships.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="border-l-4 border-indigo-400 pl-4 py-2 relative">
+                            <div class="absolute -left-2 top-0 mt-3 h-4 w-4 rounded-full bg-indigo-400"></div>
+                            <div class="flex items-center justify-between cursor-pointer" onclick="toggleJobDetail('senior-consultant-content')">
+                                <h3 class="text-xl font-semibold" style="color: var(--title-color);">Senior Travel Consultant - RIYA TOURS & TRAVEL (i) PVT LTD</h3>
+                                <i id="senior-consultant-content-icon" class="fas fa-chevron-down text-lg text-gray-400 transform transition-transform duration-300 rotate-180"></i>
+                            </div>
+                            <p class="text-sm italic mb-2" style="color: var(--text-color-light);">Vikhroli, Mumbai | 09/2019 - 10/2022</p>
+                            <div id="senior-consultant-content" class="job-content mt-2 transition-all duration-300 ease-in-out overflow-hidden" style="max-height: 0px; opacity: 0;">
+                                <ul class="list-disc list-inside mt-2 space-y-1" style="color: var(--text-color-light);">
+                                    <li>Hands-on experience with 10+ B2B products including Airline, Hotel, Train, Bus, Car, Insurance, Cruise, Multi-Utility, Rail Tourism, Money Transfer, and Lounge services.</li>
+                                    <li>Managed reservations for various travel services with accuracy and independence.</li>
+                                    <li>Thrived in both self-directed and collaborative environments.</li>
+                                    <li>Collected sales team feedback, setting up goals and processes.</li>
+                                    <li>Managed internal stack holders and their queries including business reports.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="border-l-4 border-indigo-400 pl-4 py-2 relative">
+                            <div class="absolute -left-2 top-0 mt-3 h-4 w-4 rounded-full bg-indigo-400"></div>
+                            <div class="flex items-center justify-between cursor-pointer" onclick="toggleJobDetail('travel-consultant-content')">
+                                <h3 class="text-xl font-semibold" style="color: var(--title-color);">Travel Consultant - RIYA TOURS & TRAVEL (i) PVT LTD</h3>
+                                <i id="travel-consultant-content-icon" class="fas fa-chevron-down text-lg text-gray-400 transform transition-transform duration-300 rotate-180"></i>
+                            </div>
+                            <p class="text-sm italic mb-2" style="color: var(--text-color-light);">Vikhroli, Mumbai | 02/2018 - 08/2019</p>
+                            <div id="travel-consultant-content" class="job-content mt-2 transition-all duration-300 ease-in-out overflow-hidden" style="max-height: 0px; opacity: 0;">
+                                <ul class="list-disc list-inside mt-2 space-y-1" style="color: var(--text-color-light);">
+                                    <li>Non-Air Products and Query Management.</li>
+                                    <li>Air Ticketing - Customer Service (FSC/LCC) PORTAL & GDS (AMADEUS/SABER).</li>
+                                    <li>Handled incoming requests via multiple channels, providing proactive travel consultation.</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="border-l-4 border-indigo-400 pl-4 py-2 relative">
+                            <div class="absolute -left-2 top-0 mt-3 h-4 w-4 rounded-full bg-indigo-400"></div>
+                            <div class="flex items-center justify-between cursor-pointer" onclick="toggleJobDetail('deo-content')">
+                                <h3 class="text-xl font-semibold" style="color: var(--title-color);">DEO/MIS Executive - UT WORLDWIDE (i) PVT LTD (CONTRACT)</h3>
+                                <i id="deo-content-icon" class="fas fa-chevron-down text-lg text-gray-400 transform transition-transform duration-300 rotate-180"></i>
+                            </div>
+                            <p class="text-sm italic mb-2" style="color: var(--text-color-light);">Bhiwandi, Mumbai | 11/2016 - 11/2017</p>
+                            <div id="deo-content" class="job-content mt-2 transition-all duration-300 ease-in-out overflow-hidden" style="max-height: 0px; opacity: 0;">
+                                <ul class="list-disc list-inside mt-2 space-y-1" style="color: var(--text-color-light);">
+                                    <li>Sales reports maintenance daily, monthly and yearly.</li>
+                                    <li>Inward and outward products billing.</li>
+                                    <li>MIS reports or records reconciliation. Looked after calls & emails, understood client's perception and provided accurate solutions to clients.</li>
+                                    <li>Product dispatch planning as per STN or Challan deadline.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+    </div> <footer class="bg-gray-900 text-white py-2 fixed bottom-0 w-full z-50">
+        <div class="container mx-auto px-4 text-center text-sm">
+            <p>&copy; 2025 Mohammed Irshad S.D. Ansari. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // The toggleSection function to handle the collapsing and expanding of main sections.
+        function toggleSection(contentId) {
+            const content = document.getElementById(contentId);
+            const icon = document.getElementById(contentId.replace('-content', '-icon'));
+
+            if (content.style.maxHeight === '0px' || content.style.maxHeight === '') {
+                content.style.maxHeight = content.scrollHeight + 'px';
+                content.style.opacity = 1;
+                icon.style.transform = 'rotate(0deg)';
+            } else {
+                content.style.maxHeight = '0px';
+                content.style.opacity = 0;
+                icon.style.transform = 'rotate(180deg)';
+            }
+        }
+
+        // The toggleJobDetail function to handle the collapsing and expanding of individual job entries.
+        function toggleJobDetail(contentId) {
+            const content = document.getElementById(contentId);
+            const icon = document.getElementById(contentId + '-icon');
+
+            if (content.style.maxHeight === '0px' || content.style.maxHeight === '') {
+                content.style.maxHeight = content.scrollHeight + 'px';
+                content.style.opacity = 1;
+                icon.style.transform = 'rotate(0deg)';
+            } else {
+                content.style.maxHeight = '0px';
+                content.style.opacity = 0;
+                icon.style.transform = 'rotate(180deg)';
+            }
+        }
+
+        // Passcode unlock function
+        function unlockPortfolio() {
+            const passcode = document.getElementById('passcode-input').value;
+            const passcodeOverlay = document.getElementById('passcode-overlay');
+            const modeSelectOverlay = document.getElementById('mode-select-overlay');
+            const errorMessage = document.getElementById('error-message');
+            const passcodeCorrect = 'Miadro2';
+
+            if (passcode === passcodeCorrect) {
+                passcodeOverlay.style.opacity = '0';
+                setTimeout(() => {
+                    passcodeOverlay.style.display = 'none';
+                    modeSelectOverlay.classList.remove('hidden');
+                }, 500);
+            } else {
+                errorMessage.classList.remove('hidden');
+            }
+        }
+
+        // New function to handle the final unlock after theme selection
+        function finalizeUnlock() {
+            const overlay = document.getElementById('mode-select-overlay');
+            const pageContentWrapper = document.getElementById('page-content-wrapper');
+            const mobileToggle = document.getElementById('mobile-menu-toggle');
+            const actionButtons = document.getElementById('action-buttons');
+
+            overlay.style.opacity = '0';
+            setTimeout(() => {
+                overlay.style.display = 'none';
+                pageContentWrapper.classList.add('unlocked');
+
+                // If on a mobile device, make the buttons permanently visible after unlock
+                if (window.innerWidth < 768) {
+                    mobileToggle.classList.add('visible');
+                    actionButtons.classList.add('visible');
+                }
+
+                // Start the 10-minute session timer
+                const sessionDuration = 10 * 60 * 1000; // 10 minutes in milliseconds
+                setTimeout(sessionTimeout, sessionDuration);
+            }, 500);
+        }
+
+        // Function to handle session timeout
+        function sessionTimeout() {
+            const pageContentWrapper = document.getElementById('page-content-wrapper');
+            const passcodeOverlay = document.getElementById('passcode-overlay');
+            const actionButtons = document.getElementById('action-buttons');
+            
+            // Hide action buttons
+            actionButtons.classList.remove('visible');
+
+            // Reset the page to its locked state
+            pageContentWrapper.classList.remove('unlocked');
+            passcodeOverlay.style.display = 'flex'; // Show the passcode overlay
+            passcodeOverlay.style.opacity = '1';
+            
+            alert('Your session has expired. Please re-enter the passcode to continue.');
+        }
+
+        // New function for PDF download
+        function downloadPDF() {
+            // IMPORTANT: You must host your PDF file online and replace this placeholder.
+            // A local file path like "C:\Users\..." will NOT work for security reasons.
+            const pdfPath = 'REPLACE_WITH_YOUR_HOSTED_PDF_URL';
+
+            if (pdfPath === 'REPLACE_WITH_YOUR_HOSTED_PDF_URL') {
+                alert('The download link has not been configured yet.');
+                return;
+            }
+
+            const link = document.createElement('a');
+            link.href = pdfPath;
+            link.download = 'Mohammed_Irshad_Ansari_CV.pdf'; // Suggested file name
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        // Share functionality
+        function sharePage() {
+            if (navigator.share) {
+                // Use the Web Share API if available
+                navigator.share({
+                    title: document.title,
+                    text: 'Check out my professional portfolio!',
+                    url: window.location.href
+                }).then(() => {
+                    console.log('Successfully shared');
+                }).catch((error) => {
+                    console.error('Error sharing:', error);
+                });
+            } else {
+                // Fallback for browsers that don't support the Web Share API
+                // Copy URL to clipboard and alert the user
+                const el = document.createElement('textarea');
+                el.value = window.location.href;
+                document.body.appendChild(el);
+                el.select();
+                document.execCommand('copy');
+                document.body.removeChild(el);
+                alert('The portfolio link has been copied to your clipboard!');
+            }
+        }
+
+        function updateModeIcon(isDarkMode) {
+            const icon = document.getElementById('mode-icon');
+            const toggleButton = document.getElementById('mode-toggle');
+            if (icon) {
+                icon.classList.toggle('fa-sun', isDarkMode);
+                icon.classList.toggle('fa-moon', !isDarkMode);
+            }
+            if (toggleButton) {
+                toggleButton.title = isDarkMode ? 'Switch to Day Mode' : 'Switch to Night Mode';
+            }
+        }
+        
+        let isHeaderShrunk = false;
+        let ticking = false;
+        const header = document.querySelector('.glass-header');
+        let lastScrollTop = 0; // Variable to store the last scroll position
+
+        function updateHeaderOnScroll() {
+            if (!ticking) {
+                window.requestAnimationFrame(() => {
+                    const st = window.pageYOffset || document.documentElement.scrollTop;
+                    const pageContentWrapper = document.getElementById('page-content-wrapper');
+                    const mobileToggle = document.getElementById('mobile-menu-toggle');
+                    const actionButtons = document.getElementById('action-buttons');
+
+                    if (window.innerWidth < 768 && pageContentWrapper.classList.contains('unlocked')) {
+                        // Header shrink logic
+                        if (st > 150) {
+                            if (!isHeaderShrunk) {
+                                header.classList.add('scrolled');
+                                isHeaderShrunk = true;
+                            }
+                        } else {
+                            if (isHeaderShrunk) {
+                                header.classList.remove('scrolled');
+                                isHeaderShrunk = false;
+                            }
+                        }
+
+                        // Hide on scroll down, show on scroll up
+                        if (st > lastScrollTop && st > 150) { // Scrolling down past the header
+                            mobileToggle.classList.remove('visible');
+                            actionButtons.classList.remove('visible');
+                        } else if (st < lastScrollTop) { // Scrolling up
+                            mobileToggle.classList.add('visible');
+                            actionButtons.classList.add('visible');
+                        }
+                        lastScrollTop = st <= 0 ? 0 : st;
+
+                    } else {
+                        // Desktop view or locked page - always full size
+                        header.classList.remove('scrolled');
+                        isHeaderShrunk = false;
+                    }
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        }
+
+        // Add event listeners to the window
+        window.addEventListener('scroll', updateHeaderOnScroll);
+        window.addEventListener('resize', () => {
+            if (window.innerWidth >= 768) {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        window.addEventListener('DOMContentLoaded', () => {
+            const isMobile = window.innerWidth < 768;
+            const sidebar = document.getElementById('sidebar');
+            const sidebarIndicator = document.getElementById('sidebar-indicator');
+            const mobileToggle = document.getElementById('mobile-menu-toggle');
+            const body = document.body;
+            const dayModeButton = document.getElementById('day-mode-button');
+            const nightModeButton = document.getElementById('night-mode-button');
+            const passcodeInput = document.getElementById('passcode-input');
+            const headerElement = document.querySelector('.glass-header');
+            const actionButtons = document.getElementById('action-buttons');
+
+
+            // --- Logic to show/hide buttons on header hover for DESKTOP ONLY---
+            if (window.innerWidth >= 768) {
+                if (headerElement && mobileToggle && actionButtons) {
+                    headerElement.addEventListener('mouseenter', () => {
+                        mobileToggle.classList.add('visible');
+                        actionButtons.classList.add('visible');
+                    });
+
+                    headerElement.addEventListener('mouseleave', () => {
+                        // Don't hide the buttons if the sidebar is currently open
+                        if (!sidebar.classList.contains('open')) {
+                            mobileToggle.classList.remove('visible');
+                            actionButtons.classList.remove('visible');
+                        }
+                    });
+                }
+            }
+            // --- END LOGIC ---
+
+            // Add event listener for the Enter key on the passcode input
+            if (passcodeInput) {
+                passcodeInput.addEventListener('keydown', (event) => {
+                    if (event.key === 'Enter') {
+                        unlockPortfolio();
+                    }
+                });
+            }
+
+
+            // Initial state for all main sections
+            const allSections = ['about', 'work-experience', 'skills', 'education', 'languages'];
+            allSections.forEach(section => {
+                const content = document.getElementById(section + '-content');
+                const icon = document.getElementById(section + '-icon');
+                if (content && icon) {
+                    if (isMobile) {
+                        content.style.maxHeight = content.scrollHeight + 'px';
+                        content.style.opacity = 1;
+                        icon.style.transform = 'rotate(0deg)';
+                    } else {
+                        if (section === 'about' || section === 'work-experience') {
+                            content.style.maxHeight = content.scrollHeight + 'px';
+                            content.style.opacity = 1;
+                            icon.style.transform = 'rotate(0deg)';
+                        } else {
+                            content.style.maxHeight = '0px';
+                            content.style.opacity = 0;
+                            icon.style.transform = 'rotate(180deg)';
+                        }
+                    }
+                }
+            });
+
+            // Set initial state for individual work experience items
+            const workExperienceItems = document.querySelectorAll('#work-experience-content .job-content');
+            workExperienceItems.forEach((content, index) => {
+                const icon = document.getElementById(content.id + '-icon');
+                if (content && icon) {
+                    if (index === 0) {
+                        content.style.maxHeight = content.scrollHeight + 'px';
+                        content.style.opacity = 1;
+                        icon.style.transform = 'rotate(0deg)';
+                    } else {
+                        content.style.maxHeight = '0px';
+                        content.style.opacity = 0;
+                        icon.style.transform = 'rotate(180deg)';
+                    }
+                }
+            });
+
+            // Desktop hover functionality for sidebar
+            if (sidebarIndicator) {
+                sidebarIndicator.addEventListener('mouseenter', () => {
+                    if (window.innerWidth >= 768) {
+                        sidebar.classList.add('open');
+                        body.classList.add('sidebar-open');
+                    }
+                });
+            }
+            if (sidebar) {
+                sidebar.addEventListener('mouseleave', (e) => {
+                    const rect = sidebar.getBoundingClientRect();
+                    if (e.clientX > rect.right) {
+                        sidebar.classList.remove('open');
+                        body.classList.remove('sidebar-open');
+                    }
+                });
+            }
+
+            // Mobile toggle functionality
+            if (mobileToggle) {
+                mobileToggle.addEventListener('click', () => {
+                    sidebar.classList.toggle('open');
+                    mobileToggle.classList.toggle('sidebar-is-open');
+                    const icon = mobileToggle.querySelector('i');
+                    icon.classList.toggle('fa-bars');
+                    icon.classList.toggle('fa-times');
+                });
+            }
+
+            // Theme selection buttons
+            if (dayModeButton) {
+                dayModeButton.addEventListener('click', () => {
+                    document.body.classList.remove('dark-mode');
+                    localStorage.setItem('theme', 'light');
+                    updateModeIcon(false);
+                    finalizeUnlock();
+                });
+            }
+
+            if (nightModeButton) {
+                nightModeButton.addEventListener('click', () => {
+                    document.body.classList.add('dark-mode');
+                    localStorage.setItem('theme', 'dark');
+                    updateModeIcon(true);
+                    finalizeUnlock();
+                });
+            }
+        });
+    </script>
+</body>
+
+</html>
