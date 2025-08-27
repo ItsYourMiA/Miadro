@@ -993,7 +993,7 @@
         function downloadPDF() {
             // IMPORTANT: You must host your PDF file online and replace this placeholder.
             // A local file path like "C:\Users\..." will NOT work for security reasons.
-            const pdfPath = 'Miadro/Mohammed Irshad - CV - AUG2025.pdf';
+            const pdfPath = 'Mohammed Irshad - CV - AUG2025.pdf';
 
             if (pdfPath === 'REPLACE_WITH_YOUR_HOSTED_PDF_URL') {
                 alert('The download link has not been configured yet.');
@@ -1002,7 +1002,7 @@
 
             const link = document.createElement('a');
             link.href = pdfPath;
-            link.download = 'Mohammed_Irshad_Ansari_Resume.pdf'; // Suggested file name
+            link.download = 'Mohammed_Irshad_Ansari_CV.pdf'; // Suggested file name
             document.body.appendChild(link);
             link.click();
             document.body.removeChild(link);
@@ -1134,8 +1134,7 @@
                 }
             };
             // --- End Disable Dev Tools ---
-
-
+            
             // --- Logic to show/hide buttons on header hover for DESKTOP ONLY---
             if (window.innerWidth >= 768) {
                 if (headerElement && mobileToggle && actionButtons) {
